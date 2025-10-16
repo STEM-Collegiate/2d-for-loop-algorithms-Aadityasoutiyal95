@@ -1,4 +1,4 @@
-// 3x3 Arrays for testing
+ // 3x3 Arrays for testing
 const testMatrices = [
     [   // ascending numbers
         [0, 1, 2],
@@ -68,28 +68,124 @@ function sumMatrix(matrix) {
 }
 
 function rowSum(matrix) {
+    let result = [];
+    for (let row of matrix) {
+        let sum = 0;
+        for (let val of row) {
+            sum += val;
+        }
+        result.push(sum);
+    }
+    return result;
 }
 
 function colSum(matrix) {
+    let result = [];
+    if (matrix.length === 0) return result;
+    let numCols = matrix[0].length;
+    for (let col = 0; col < numCols; col++) {
+        let sum = 0;
+        for (let row of matrix) {
+            sum += row[col];
+        }
+        result.push(sum);
+    }
+    return result;
 }
 
 function countZeros(matrix) {
+    let count = 0;
+    for (let row of matrix) {
+        for (let val of row) {
+            if (val === 0) count++;
+        }
+    }   return count;   
 }
 
 function minValue2D(matrix) {
+    let min = Infinity;
+    let found = false;
+    for (let row of matrix) {
+        for (let val of row) {
+            if (typeof val === 'number' && !isNaN(val)) {
+                if (val < min) {
+                    min = val;
+                }
+                found = true;
+            }
+        }
+    }
+    return found ? min : undefined;
 }
 
 function maxValue2D(matrix) {
+    let max = -Infinity;
+    let found = false;
+    for (let row of matrix) {
+        for (let val of row) {
+            if (typeof val === 'number' && !isNaN(val)) {
+                if (val > max) {
+                    max = val;
+                }
+                found = true;
+            }
+        }
+    }
+    return found ? max : undefined;
 }
 
 function doubleMatrix(matrix) {
+    let result = [];
+    for (const row of matrix) {
+        let newRow = [];
+        for (const val of row) {
+            newRow.push(val * 2);
+        }
+        result.push(newRow);
+    }
+    return result;
 }
 
+
 function positiveMap(matrix) {
+    let result = [];
+    for (let i = 0; i < matrix.length; i++) {
+        let newRow = [];
+        for (let j = 0; j < matrix[i].length; j++) {
+            let val = matrix[i][j];
+            if (typeof val === 'number' && !isNaN(val) && val > 0) {
+                newRow.push(true);
+            } else {
+                newRow.push(false);
+            }
+        }
+        result.push(newRow);
+    }
+    return result;
 }
 
 function diagonalSum(matrix) {
+    let sum = 0;
+    for (let i = 0; i < matrix.length; i++) {
+        let val = matrix[i][i];
+        if (typeof val === 'number' && !isNaN(val)) {
+            sum += val;
+        }
+    }
+    return sum;
 }
 
 function transposeMatrix(matrix) {
+    if (matrix.length === 0) return [];
+    let numRows = matrix.length;
+    let numCols = matrix[0].length;
+    let result = [];
+    for (let j = 0; j < numCols; j++) {
+        let newRow = [];
+        for (let i = 0; i < numRows; i++) {
+            newRow.push(matrix[i][j]);
+        }
+        result.push(newRow);
+    }
+    return result;
 }
